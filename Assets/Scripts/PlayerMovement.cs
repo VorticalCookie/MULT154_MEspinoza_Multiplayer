@@ -45,6 +45,11 @@ public class PlayerMovement : NetworkBehaviour
         
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, 5);
+    }
     void FixedUpdate()
     {
         if (!isLocalPlayer)
@@ -74,7 +79,9 @@ public class PlayerMovement : NetworkBehaviour
         {
             index++;
         }
+        
         rbPlayer.MovePosition(spawnPoints[index].transform.position);
+        rbPlayer.velocity = Vector3.zero;
     }
 
     private void OnTriggerExit(Collider other)
